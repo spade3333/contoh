@@ -14,61 +14,63 @@ function Hero() {
       <Container
         className="text-center"
         style={{
-          maxWidth: "520px",
-          paddingTop: "4rem",
-          paddingBottom: "4rem",
+          maxWidth: "560px", // sedikit lebih lebar untuk desktop
+          paddingTop: "4.5rem",
+          paddingBottom: "4.5rem",
         }}
       >
         {/* HEADLINE UTAMA */}
         <h1
           style={{
-            fontSize: "2.05rem",
+            fontSize: "clamp(1.6rem, 3.5vw, 2.1rem)", // responsif
             lineHeight: "1.25",
             fontWeight: 700,
             color: "#0b1f3a",
-            marginBottom: "0.9rem",
+            marginBottom: "1rem",
+            letterSpacing: "-0.01em",
           }}
         >
-          Produk Pilihan,
+          Belanja Produk Berkualitas
           <br />
-          Kualitas Terjamin
+          Tanpa Ribet, Langsung via WhatsApp
         </h1>
 
-        {/* HEADLINE PENDUKUNG */}
+        {/* SUBHEADLINE */}
         <p
           style={{
-            fontSize: "0.95rem",
+            fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
+            lineHeight: "1.6",
             color: "#4a5568",
-            marginBottom: "2.2rem",
+            marginBottom: "2.4rem",
           }}
         >
-          Belanja kebutuhan harian dengan proses mudah, respon cepat, dan
-          pengiriman yang dapat diandalkan.
+          Produk pilihan dengan respon cepat, harga jelas, dan pengiriman aman
+          ke seluruh Indonesia.
         </p>
 
-        {/* 🔽 GROUP ICON + CTA (DITURUNKAN) */}
-        <div style={{ marginTop: "1.4rem" }}>
-          {/* ICON BESAR */}
+        {/* ICON + CTA */}
+        <div style={{ marginTop: "1.2rem" }}>
+          {/* ICON */}
           <div
             className="d-flex align-items-center justify-content-center mx-auto"
             style={{
-              width: "96px",
-              height: "96px",
+              width: "88px",
+              height: "88px",
               borderRadius: "50%",
               backgroundColor: "#e8f0ff",
-              marginBottom: "2.2rem",
+              marginBottom: "2rem",
             }}
           >
             <i
               className="bi bi-shield-check"
               style={{
-                fontSize: "3rem",
+                fontSize: "2.6rem",
                 color: "#0d6efd",
               }}
             ></i>
           </div>
 
-          {/* CTA WHATSAPP */}
+          {/* CTA */}
           <Button
             variant="success"
             href="https://wa.me/628xxxxxxxxxx"
@@ -88,7 +90,7 @@ function Hero() {
             style={{
               fontSize: "0.8rem",
               color: "#6b7280",
-              marginTop: "0.9rem",
+              marginTop: "1rem",
             }}
           >
             Respon cepat • Admin aktif • Aman & terpercaya

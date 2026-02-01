@@ -15,26 +15,22 @@ function Navigation() {
           backgroundColor: "rgba(255, 255, 255, 0.85)",
           backdropFilter: "blur(8px)",
           padding: "0.5rem 0",
-          height: "56px", // KUNCI: tinggi navbar tetap
+          height: "56px",
           zIndex: 1030,
         }}
         className="shadow-sm"
       >
         <Container style={{ maxWidth: "1100px" }} className="position-relative">
-          {/* LOGO — KIRI */}
+          {/* LOGO */}
           <Navbar.Brand
             href="#home"
             onClick={() => setExpanded(false)}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              zIndex: 2,
-            }}
+            style={{ fontSize: "1.3rem" }}
           >
-            <span style={{ fontSize: "1.3rem" }}>🛍️</span>
+            🛍️
           </Navbar.Brand>
 
-          {/* BRAND NAME — TENGAH (MOBILE ONLY, FIXED) */}
+          {/* BRAND CENTER (MOBILE ONLY) */}
           <div
             className="d-lg-none"
             style={{
@@ -45,8 +41,7 @@ function Navigation() {
               fontWeight: 700,
               fontSize: "0.95rem",
               color: "#0b1f3a",
-              pointerEvents: "none", // tidak ikut klik
-              zIndex: 1,
+              pointerEvents: "none",
               whiteSpace: "nowrap",
             }}
           >
@@ -56,7 +51,6 @@ function Navigation() {
           {/* BRAND DESKTOP */}
           <Navbar.Brand
             href="#home"
-            onClick={() => setExpanded(false)}
             className="d-none d-lg-block"
             style={{
               fontWeight: 700,
@@ -67,27 +61,39 @@ function Navigation() {
             BrandName
           </Navbar.Brand>
 
-          {/* BURGER — KANAN */}
+          {/* TOGGLE */}
           <Navbar.Toggle
             aria-controls="main-navbar"
-            className="ms-auto"
-            onClick={() => setExpanded(expanded ? false : "expanded")}
+            className="ms-auto d-lg-none"
+            onClick={() => setExpanded(expanded ? false : true)}
           />
+
+          {/* ===== DESKTOP MENU (NORMAL) ===== */}
+          <Navbar.Collapse
+            id="main-navbar"
+            className="d-none d-lg-flex justify-content-end"
+          >
+            <Nav className="gap-3">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#about">About</Nav.Link>
+              <Nav.Link href="#product">Product</Nav.Link>
+              <Nav.Link href="#testimoni">Testimoni</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* MENU — TURUN DI BAWAH NAVBAR */}
-      <Navbar.Collapse
-        id="main-navbar"
-        className={`bg-white shadow-sm ${expanded ? "show" : ""}`}
-        style={{
-          position: "fixed",
-          top: "56px", // persis di bawah navbar
-          width: "100%",
-          zIndex: 1029,
-        }}
-      >
-        <Container>
+      {/* ===== MOBILE DROPDOWN ===== */}
+      {expanded && (
+        <div
+          className="d-lg-none bg-white shadow-sm"
+          style={{
+            position: "fixed",
+            top: "56px",
+            width: "100%",
+            zIndex: 1029,
+          }}
+        >
           <Nav className="flex-column text-center py-3 gap-2">
             <Nav.Link href="#home" onClick={() => setExpanded(false)}>
               Home
@@ -102,8 +108,8 @@ function Navigation() {
               Testimoni
             </Nav.Link>
           </Nav>
-        </Container>
-      </Navbar.Collapse>
+        </div>
+      )}
     </>
   );
 }

@@ -2,9 +2,14 @@ import { Container, Row, Col, Card, Button, Carousel } from "react-bootstrap";
 import produkImage from "../assets/images/produk1.jpg";
 
 function Product() {
-  const products = [1, 2, 3, 4];
+  const products = [
+    { id: 1, name: "MacBook Air M1", price: "Rp 12.500.000" },
+    { id: 2, name: "ASUS VivoBook 14", price: "Rp 6.200.000" },
+    { id: 3, name: "HP Pavilion 15", price: "Rp 7.800.000" },
+    { id: 4, name: "Lenovo IdeaPad Slim 3", price: "Rp 5.900.000" },
+  ];
 
-  // Bagi produk per 2 item (mobile slide)
+  // Mobile slider (2 produk)
   const productPairs = [];
   for (let i = 0; i < products.length; i += 2) {
     productPairs.push(products.slice(i, i + 2));
@@ -15,61 +20,58 @@ function Product() {
       className="h-100 text-center"
       style={{
         border: "none",
-        borderRadius: "16px",
+        borderRadius: "18px",
         backgroundColor: "#ffffff",
-        boxShadow: "0 12px 28px rgba(15, 23, 42, 0.06)",
+        boxShadow: "0 12px 28px rgba(15, 23, 42, 0.08)",
         overflow: "hidden",
       }}
     >
-      {/* IMAGE */}
+      {/* IMAGE → jadi penentu tinggi card */}
       <Card.Img
         src={produkImage}
-        alt={`Produk ${item}`}
+        alt={item.name}
         style={{
-          height: "120px", // DIPERKECIL → muat 1 layar HP
-          objectFit: "cover",
+          height: "160px", // ⬅️ desktop lebih tinggi
+          objectFit: "contain",
+          padding: "12px",
         }}
       />
 
-      {/* BODY */}
-      <Card.Body
-        style={{
-          padding: "0.9rem 0.9rem 1.1rem",
-        }}
-      >
-        {/* TITLE */}
+      <Card.Body style={{ padding: "1rem" }}>
+        {/* NAMA */}
         <Card.Title
           style={{
-            fontSize: "0.85rem",
+            fontSize: "0.9rem",
             fontWeight: 600,
-            marginBottom: "0.4rem",
+            marginBottom: "0.3rem",
             color: "#0b1f3a",
           }}
         >
-          Produk {item}
+          {item.name}
         </Card.Title>
 
-        {/* SUBTITLE MINI */}
-        <p
+        {/* HARGA */}
+        <div
           style={{
-            fontSize: "0.7rem",
-            color: "#64748b",
-            marginBottom: "0.7rem",
+            fontSize: "0.8rem",
+            fontWeight: 600,
+            color: "#16a34a",
+            marginBottom: "1rem",
           }}
         >
-          Kualitas terjamin
-        </p>
+          {item.price}
+        </div>
 
         {/* CTA */}
         <Button
           variant="outline-success"
           size="sm"
           href="https://wa.me/628xxxxxxxxxx"
-          className="d-inline-flex align-items-center justify-content-center gap-1"
+          className="w-100 d-flex align-items-center justify-content-center gap-1"
           style={{
-            fontSize: "0.7rem",
-            borderRadius: "10px",
-            padding: "0.35rem 0.7rem",
+            fontSize: "0.75rem",
+            borderRadius: "12px",
+            padding: "0.45rem",
           }}
         >
           <i className="bi bi-whatsapp"></i>
@@ -89,7 +91,6 @@ function Product() {
       }}
     >
       <Container>
-        {/* JUDUL */}
         <h2
           className="text-center"
           style={{
@@ -101,7 +102,6 @@ function Product() {
           Produk Kami
         </h2>
 
-        {/* SUBHEADLINE */}
         <p
           className="text-center"
           style={{
@@ -110,18 +110,17 @@ function Product() {
             marginBottom: "2.2rem",
           }}
         >
-          Produk pilihan dengan kualitas terjaga, siap dipesan cepat via
-          WhatsApp.
+          Laptop pilihan, siap dipesan cepat via WhatsApp.
         </p>
 
-        {/* ===== MOBILE: SLIDER (2 produk / slide) ===== */}
+        {/* MOBILE */}
         <div className="d-md-none">
           <Carousel indicators={false} interval={3500}>
             {productPairs.map((pair, index) => (
               <Carousel.Item key={index}>
                 <Row className="g-3">
                   {pair.map((item) => (
-                    <Col xs={6} key={item}>
+                    <Col xs={6} key={item.id}>
                       <ProductCard item={item} />
                     </Col>
                   ))}
@@ -131,10 +130,10 @@ function Product() {
           </Carousel>
         </div>
 
-        {/* ===== DESKTOP: GRID ===== */}
+        {/* DESKTOP */}
         <Row className="g-4 d-none d-md-flex">
           {products.map((item) => (
-            <Col md={3} key={item}>
+            <Col md={3} key={item.id}>
               <ProductCard item={item} />
             </Col>
           ))}
